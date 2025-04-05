@@ -75,7 +75,7 @@ def register(user: UserRegisterRequest, db: Session = Depends(get_db)):
         username=user.username,
         password_hash=hash_password(user.password),
         nickname=user.nickname,
-        created_at=datetime.utcnow()  # created_at 필드에 현재 시간을 설정
+#        created_at=datetime.utcnow()  # created_at 필드에 현재 시간을 설정
     )
     db.add(user_db)
     db.commit()
