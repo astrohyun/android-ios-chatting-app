@@ -11,7 +11,7 @@ def login_page(page: ft.Page, on_success, on_register):
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.post(
-                    "http://43.201.53.230:5050/auth/login",
+                    "http://43.203.205.210:5050/auth/login",
                     json={
                         "username": username_field.value,
                         "password": password_field.value
