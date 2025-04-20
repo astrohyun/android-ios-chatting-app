@@ -96,7 +96,7 @@ async def upload_file(file: UploadFile = File(...), channel: str = Form(...)):
             f.write(await file.read())
 
         # 업로드 성공 후 파일 URL 반환
-        file_url = f"http://43.201.53.230:5050/chat/upload/{file_path.name}"
+        file_url = f"http://43.203.205.210:5050/chat/upload/{file_path.name}"
         return JSONResponse(content={"file_url": file_url}, status_code=200)
 
     except Exception as e:
