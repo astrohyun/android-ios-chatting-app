@@ -78,7 +78,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
     async def load_channels():
         try:
             async with httpx.AsyncClient() as client:
-                response = await client.get("http://43.201.53.230:5050/chat/channels")
+                response = await client.get("http://43.203.205.210:5050/chat/channels")
                 if response.status_code == 200:
                     channels_list = [channel['name'] for channel in response.json()]  # 채널 목록을 받아옴
                     return channels_list
@@ -113,7 +113,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
     async def fetch_messages(channel_name):
         try:
             async with httpx.AsyncClient() as client:
-                response = await client.get(f"http://43.201.53.230:5050/chat/messages?channel={channel_name}")
+                response = await client.get(f"http://43.203.205.210:5050/chat/messages?channel={channel_name}")
                 if response.status_code == 200:
                     messages = response.json()
                     return messages
@@ -158,7 +158,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
 
 #    try:
 #        async with httpx.AsyncClient() as client:
-#            response = await client.get("http://43.201.53.230:5050/chat/channels")
+#            response = await client.get("http://43.203.205.210:5050/chat/channels")
 #            if response.status_code == 200:
 #                channels_list = [channel['name'] for channel in response.json()]  # 채널 목록을 받아옴
 #            else:
@@ -261,7 +261,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
     async def ws_handler(): ##3.1.
         global all_users
 
-        ws_url = f"ws://43.201.53.230:5050/ws/chat?channel={current_channel}&token={jwt_token}"
+        ws_url = f"ws://43.203.205.210:5050/ws/chat?channel={current_channel}&token={jwt_token}"
         try:
             async with websockets.connect(ws_url) as websocket:
                 ws_connection["ws"] = websocket
@@ -371,7 +371,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
                 data = {"title": new_channel, "password": channel_password_field.value.strip()}
                 try:
                     async with httpx.AsyncClient() as client:
-                        response = await client.post("http://43.201.53.230:5050/chat/create_channel", json=data)
+                        response = await client.post("http://43.203.205.210:5050/chat/create_channel", json=data)
                         if response.status_code == 200:
                             channels_list.append(new_channel)
                             page.snack_bar = ft.SnackBar(ft.Text("채널 생성 성공"))
@@ -414,7 +414,7 @@ async def chat_lobby(page: ft.Page, jwt_token: str, nickname: str, channel: str 
             # FilePickerFile 객체에서 파일을 읽어 bytes 형태로 변환
                 with open(file_obj.path, 'rb') as file:
                     response = await client.post(
-                        "http://43.201.53.230:5050/chat/upload",
+                        "http://43.203.205.210:5050/chat/upload",
                         files={"file": (file_obj.name, file, "application/octet-stream")},  # 파일을 bytes로 전달     ## HTTP body 아래로
                         data={"channel": current_channel}  # 채널 정보와 함께 전송
                     )
