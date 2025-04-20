@@ -18,7 +18,7 @@ def register_page(page: ft.Page, on_back):
         }
         async with httpx.AsyncClient() as client:
             try:
-                response = await client.post("http://43.201.53.230:5050/auth/register", json=data, timeout=10.0)
+                response = await client.post("http://43.203.205.210:5050/auth/register", json=data, timeout=10.0)
                 if response.status_code == 200:
                     page.snack_bar = ft.SnackBar(ft.Text("회원가입 성공! 로그인 화면으로 이동합니다."))
                     page.snack_bar.open = True
