@@ -1,0 +1,6 @@
+flet==0.25.2
+asyncio
+httpx
+better_profanity
+httpx
+websockets==13.0.1
